@@ -21,7 +21,7 @@ jobs:
     # В action setup-python@v4 передаём параметр — версию Python
       with:
         python-version: 3.9
-    # Обновляем pip, устанавливаем flake8 и flake8-isort, 
+    # Обновляем pip, устанавливаем flake8 и flake8-isort,
     # устанавливаем зависимости проекта
     - name: Install dependencies
       run: |
