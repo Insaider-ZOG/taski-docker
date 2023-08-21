@@ -1,2 +1,4 @@
+# frontend/.dockerignore
 node_modules
-build cd
+build
+.env
