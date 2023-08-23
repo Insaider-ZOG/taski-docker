@@ -19,16 +19,16 @@ cd taski_final
 Замените username на ваш логин на DockerHub:
 
 cd backend
-docker build -t alex886/taski_backend:latest .
+docker build -t insaiderzog/taski_backend:latest .
 cd ../frontend
-docker build -t alex886/taski_frontend:latest .
+docker build -t insaiderzog/taski_frontend:latest .
 cd ../gateway
-docker build -t alex886/taski_gateway:latest . 
+docker build -t insaiderzog/taski_gateway:latest . 
 Загрузите образы на DockerHub:
 
-docker push alex886/taski_backend:latest
-docker push alex886/taski_frontend:latest
-docker push alex886/taski_gateway:latest
+docker push insaiderzog/taski_backend:latest
+docker push insaiderzog/taski_frontend:latest
+docker push insaiderzog/taski_gateway:latest
 Деплой на сервере
 Подключитесь к удаленному серверу
 
@@ -136,7 +136,7 @@ server {
 }
 
 server {
-    server_name 158.160.28.33 alex86kittygram444.ddns.net;
+    server_name 158.160.28.33 https://taski-kolbasky.ddns.net;
     server_tokens off;
 
     location / {
@@ -152,22 +152,22 @@ server {
 }
 
 server {
-    if ($host = alex86kittygram444.ddns.net) {
+    if ($host = taski-kolbasky.ddns.net) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
     listen 80;
-    server_name 158.160.28.33 alex86kittygram444.ddns.net;
+    server_name 158.160.28.33 taski-kolbasky.ddns.net;
     return 404; # managed by Certbot
 }
 
 server {
-    if ($host = alextaski333.ddns.net) {
+    if ($host = dumm-kittygram.ddns.net) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
     listen 80;
-    server_name 158.160.28.33 alextaski333.ddns.net;
+    server_name 158.160.28.33 dumm-kittygram.ddns.net;
     return 404; # managed by Certbot
 }
 On your remote server in the root directory of the project you should also place the docker-compose.production.yml :
@@ -185,18 +185,18 @@ services:
     volumes:
       - pg_data_production:/var/lib/postgresql/data
   backend:
-    image: maxuver/taski_backend # Docker Hub username / username on Docker image
+    image: insaiderzog/taski_backend # Docker Hub username / username on Docker image
     env_file: .env
     volumes:
       - static_volume:/backend_static
   frontend:
-    image: maxuver/taski_frontend  # Download from Docker Hub
+    image: insaiderzog/taski_frontend  # Download from Docker Hub
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static_volume:/frontend_static
   gateway:
-    image: maxuver/taski_gateway  # Download from с Docker Hub
+    image: insaiderzog/taski_gateway  # Download from с Docker Hub
     env_file: .env
     volumes:
       - static_volume:/staticfiles/
